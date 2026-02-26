@@ -1,10 +1,7 @@
 package nciteam9.myschedulelocationpal.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +21,10 @@ public class Login {
 
     @Column(name = "UserID")
     private int userID;
+
+    @OneToOne
+    @JoinColumn(name = "UserID", insertable = false, updatable = false)
+    private User user;
 
     @Column(name = "Email")
     private String email;
