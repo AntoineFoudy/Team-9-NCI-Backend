@@ -3,7 +3,6 @@ package nciteam9.myschedulelocationpal.repositories;
 import nciteam9.myschedulelocationpal.entities.Login;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 
 public interface LoginRepository extends JpaRepository<Login, Integer> {
     /*

@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 public class LoginController {
-    private Login requestLogin;
 
     private final LoginRepository loginRepository;
 
@@ -24,7 +22,7 @@ public class LoginController {
             @RequestParam String loginEmail,
             @RequestParam String loginPassword
     ) {
-        this.requestLogin = loginRepository.findByEmailAndPassword(loginEmail, loginPassword);
+        Login requestLogin = loginRepository.findByEmailAndPassword(loginEmail, loginPassword);
 
         if(requestLogin == null) {
             return ResponseEntity.notFound().build();
