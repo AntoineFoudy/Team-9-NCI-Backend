@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
+/*
+    This Class is not currently used
+    Was just to check if the backend was connecting properly to the DB
+ */
 @RestController
 public class UserController {
 
