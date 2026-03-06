@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="box">
+    <h2>Dashboard</h2>
+    
+    <label>Description</label>
+    <input id="Description" placeholder="Describe Event" />
+
+    <label>Date & Time</label>
+    <input id="dateTime" type="datetime-local" />
+
+    <label>Latitude</label>
+    <input id="latitude" placeholder="e.g. 5.33954" />
+
+    <label>Longitude</label>
+    <input id="longitude" placeholder="e.g. -7.740516" />
+
+    <div class="buttons">
+      <button onclick="addEvent()">Add Event</button>
+      <button class="secondary" onclick="getEvents()">Display Your Events</button>
+    </div>
+
+    <div id="events"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
