@@ -36,7 +36,7 @@ public class NextEvent {
             List<Schedule> schedules = scheduleRepository.findByuserId(user.getUserID());
             for(Schedule schedule : schedules) {
                 Instant event = schedule.getDateTime();
-                if(eventInNext20Min(event)) {
+                if(eventInNextTimeFrame(event)) {
                     Login login = loginRepository.findByUserID(user.getUserID());
                     String email = login.getEmail();
                     // System.out.println("Email: " +email + "First Name: " +user.getFirstName() + "Event: " + schedule.toString());
@@ -51,10 +51,11 @@ public class NextEvent {
     @
     https://docs.oracle.com/javase/8/docs/api/java/time/Instant.html
      */
-    private boolean eventInNext20Min(Instant dateTime) {
-        // Gets the time now and in 20 minutes
+    private boolean eventInNextTimeFrame(Instant dateTime) {
+        // Gets the time now and the value determined by betweenNowAndThenValue
+        int betweenNowAndThenValue = 20;
         Instant now = Instant.now();
-        Instant nowPlus20 = now.plus(Duration.ofMinutes(20));
+        Instant nowPlus20 = now.plus(Duration.ofMinutes(betweenNowAndThenValue));
 
         // Checks if the event is within 20 minutes
         if(dateTime.isAfter(now) && dateTime.isBefore(nowPlus20)) {
