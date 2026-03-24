@@ -11,31 +11,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class MyschedulelocationpalApplication {
-/*
-    private final SendEmail se;
-    private final NextEvent ne;
-
-    public MyschedulelocationpalApplication(SendEmail se, NextEvent ne) {
-        this.se = se;
-        this.ne = ne;
-    }
-
- */
-
 
     public static void main(String[] args) {
         SpringApplication.run(MyschedulelocationpalApplication.class, args);
     }
-/*
-To allow code to run on program start to test the code
-
-    @EventListener(ApplicationReadyEvent.class)
-    public void send() {
-        se.sendMessage("foudyantoine@gmail.com", "test", "Hello World");
-    }
-
-    @EventListener(ApplicationReadyEvent.class)
-    private void getUserId() {
-        ne.controlFlow();
-    }
-*/
+}
