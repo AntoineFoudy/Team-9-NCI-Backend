@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public class GeoCode {
 
-    private String apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-    private String apiKey = "AIzaSyA7y6tiN4jCAqErJwRX9snh79AATgU7e8k";
+    private final String apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+    private final String apiKey = "AIzaSyA7y6tiN4jCAqErJwRX9snh79AATgU7e8k";
     private String address;
-    private ObjectMapper oMapper = new ObjectMapper();
+    private final ObjectMapper oMapper = new ObjectMapper();
 
 
     public ArrayList<Double> addressToCoords(String address) throws Exception {
