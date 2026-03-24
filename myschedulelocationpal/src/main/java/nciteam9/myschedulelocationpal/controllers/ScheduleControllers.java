@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -44,10 +45,24 @@ public class ScheduleControllers {
     Sets up the RESTFUL GET Method to retrieve all the scheduled events for a specific user
     */
     @GetMapping
-    public ResponseEntity<List<Schedule>> getSchedule(
+    public ResponseEntity<List<ScheduleDto>> getSchedule(
             @RequestParam int userId
-    ) {
+    ) throws Exception {
         List<Schedule> requestSchedules = scheduleRepository.findByuserId(userId);
-        return ResponseEntity.ok(requestSchedules);
+
+        List<ScheduleDto> scheduleDtoList = new ArrayList<>();
+
+        for(Schedule s : requestSchedules) {
+            String fullAddress = geoCode.coordsToAddress(s.getLatitude(), s.getLongitude());
+
+            ScheduleDto scheduleDto = new ScheduleDto();
+            scheduleDto.setUserId(s.getUserId());
+            scheduleDto.setDateTime(s.getDateTime());
+            scheduleDto.setAddress(fullAddress);
+
+            scheduleDtoList.add(scheduleDto);
+        }
+
+        return ResponseEntity.ok(scheduleDtoList);
     }
 }
