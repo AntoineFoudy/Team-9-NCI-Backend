@@ -13,13 +13,11 @@ public class GeoCode {
 
     private final String apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?";
     private final String apiKey = "AIzaSyA7y6tiN4jCAqErJwRX9snh79AATgU7e8k";
-    private String address;
     private final ObjectMapper oMapper = new ObjectMapper();
 
 
     public ArrayList<Double> addressToCoords(String address) throws Exception {
         ArrayList<Double> coords = new ArrayList<>();
-        this.address = address;
 
         String fullGetUrl = apiUrl + "address=" + address + "&key=" + apiKey;
 
