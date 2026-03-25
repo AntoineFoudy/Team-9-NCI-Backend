@@ -25,7 +25,7 @@ public class LoginController {
             @RequestParam String loginEmail,
             @RequestParam String loginPassword
     ) {
-        // Reference var and excecute findBy method
+        // Reference var and execute findBy method
         Login requestLogin = loginRepository.findByEmailAndPassword(loginEmail, loginPassword);
         // If no user is found response will be 404
         if(requestLogin == null) {
