@@ -27,4 +27,10 @@ public class User {
     @Column(name = "LastName")
     private String lastName;
 
+    @Column(name = "LastLatitude")
+    private Double lastLatitude;
+
+    @Column(name = "LastLongitude")
+    private Double lastLongitude;
+
 }
