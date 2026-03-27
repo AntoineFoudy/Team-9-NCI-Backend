@@ -33,4 +33,10 @@ public class User {
     @Column(name = "LastLongitude")
     private Double lastLongitude;
 
+    @Column(name = "OnTime")
+    private Integer onTime;
+
+    @Column(name = "Late")
+    private Integer late;
+
 }
