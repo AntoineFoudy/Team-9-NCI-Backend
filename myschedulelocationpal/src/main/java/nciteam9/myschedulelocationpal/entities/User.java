@@ -1,9 +1,6 @@
 package nciteam9.myschedulelocationpal.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +15,7 @@ import lombok.Setter;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserID")
     private int userID;
 
@@ -26,5 +24,17 @@ public class User {
 
     @Column(name = "LastName")
     private String lastName;
+
+    @Column(name = "LastLatitude")
+    private Double lastLatitude;
+
+    @Column(name = "LastLongitude")
+    private Double lastLongitude;
+
+    @Column(name = "OnTime", columnDefinition = "INT DEFAULT 0")
+    private Integer onTime = 0;
+
+    @Column(name = "Late", columnDefinition = "INT DEFAULT 0")
+    private Integer late = 0;
 
 }

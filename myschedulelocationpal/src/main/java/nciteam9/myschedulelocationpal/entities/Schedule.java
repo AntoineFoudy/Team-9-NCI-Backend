@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import nciteam9.myschedulelocationpal.service.GeoCode;
 
 import java.time.Instant;
 
@@ -37,6 +38,12 @@ public class Schedule {
     @Override
     public String toString() {
         return "ScheduleID: " + scheduleId + " DateTime: " + dateTime + " Latitue: " + latitude + " Longitue: " + longitude;
+    }
+
+    public String toStringAndAddress() throws Exception{
+        GeoCode geoCode = new GeoCode();
+        String address =  geoCode.coordsToAddress(latitude, longitude);
+        return "ScheduleID: " + scheduleId + " Date and Time: " + dateTime + " Location: " + address;
     }
 
 }

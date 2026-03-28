@@ -12,6 +12,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/schedule")
 @CrossOrigin(origins = "*")
 public class ScheduleControllers {

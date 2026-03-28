@@ -30,7 +30,7 @@ public class NextEvent {
     If a user has an event in 20 minutes the send the user an email
      */
     @Scheduled(fixedRate = 600000)
-    public void controlFlow() {
+    public void controlFlow() throws Exception {
         List<User> users = userRepository.findAll();
         for(User user : users) {
             List<Schedule> schedules = scheduleRepository.findByuserId(user.getUserID());
@@ -40,7 +40,7 @@ public class NextEvent {
                     Login login = loginRepository.findByUserID(user.getUserID());
                     String email = login.getEmail();
                     // System.out.println("Email: " +email + "First Name: " +user.getFirstName() + "Event: " + schedule.toString());
-                    sendEmail.sendMessage(email, user.getFirstName(), schedule.toString());
+                    sendEmail.sendMessage(email, (user.getFirstName() + " You have an event in 20 Minutes!"), schedule.toStringAndAddress());
                 }
             }
         }
