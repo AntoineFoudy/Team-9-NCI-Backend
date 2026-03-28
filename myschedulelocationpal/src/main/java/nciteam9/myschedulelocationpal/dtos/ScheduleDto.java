@@ -15,4 +15,5 @@ public class ScheduleDto {
     private int userId;
     private Instant dateTime;
     private String address;
+    private String description;
 }
