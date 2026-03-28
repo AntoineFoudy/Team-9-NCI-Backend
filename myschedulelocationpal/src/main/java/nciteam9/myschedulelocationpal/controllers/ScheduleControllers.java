@@ -36,6 +36,7 @@ public class ScheduleControllers {
         schedule.setDateTime(scheduleDto.getDateTime());
         schedule.setLatitude(coords.get(0));
         schedule.setLongitude(coords.get(1));
+        schedule.setDescription(scheduleDto.getDescription());
 
         Schedule save = scheduleRepository.save(schedule);
         return ResponseEntity.ok(save);
@@ -59,6 +60,7 @@ public class ScheduleControllers {
             scheduleDto.setUserId(s.getUserId());
             scheduleDto.setDateTime(s.getDateTime());
             scheduleDto.setAddress(fullAddress);
+            scheduleDto.setDescription(s.getDescription());
 
             scheduleDtoList.add(scheduleDto);
         }

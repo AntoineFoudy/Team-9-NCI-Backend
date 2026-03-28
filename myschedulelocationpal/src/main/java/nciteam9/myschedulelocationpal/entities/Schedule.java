@@ -35,6 +35,9 @@ public class Schedule {
     @Column(name = "Longitude")
     private double longitude;
 
+    @Column(name = "Description")
+    private String description;
+
     @Override
     public String toString() {
         return "ScheduleID: " + scheduleId + " DateTime: " + dateTime + " Latitue: " + latitude + " Longitue: " + longitude;
