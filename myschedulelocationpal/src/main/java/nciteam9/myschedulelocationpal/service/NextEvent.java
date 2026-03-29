@@ -32,10 +32,13 @@ public class NextEvent {
     @Scheduled(fixedRate = 600000)
     public void controlFlow() throws Exception {
         List<User> users = userRepository.findAll();
+        // For every user find their schedule
         for(User user : users) {
             List<Schedule> schedules = scheduleRepository.findByuserId(user.getUserID());
+            // For every schedule a user has, find if it is within the next 20 minutes
             for(Schedule schedule : schedules) {
                 Instant event = schedule.getDateTime();
+                // Send email if true
                 if(eventInNextTimeFrame(event)) {
                     Login login = loginRepository.findByUserID(user.getUserID());
                     String email = login.getEmail();
