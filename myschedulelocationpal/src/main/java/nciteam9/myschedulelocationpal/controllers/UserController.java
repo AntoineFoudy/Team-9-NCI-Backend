@@ -29,9 +29,8 @@ public class UserController {
     }
 
     @PostMapping
-    public void setLastLocation(@RequestBody LastLocationDto lastLocationDto) throws Exception{
-        User user = userRepository.findById(lastLocationDto.getUserId())
-                .orElseThrow(() -> new RuntimeException("User Not Found"));
+    public void setLastLocation(@RequestBody LastLocationDto lastLocationDto) {
+        User user = userRepository.findByUserID(lastLocationDto.getUserId());
 
         user.setUserID(lastLocationDto.getUserId());
         user.setLastLatitude(lastLocationDto.getLastLatitude());

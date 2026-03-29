@@ -50,7 +50,7 @@ public class ScheduleControllers {
             @RequestParam int userId
     ) throws Exception {
         List<Schedule> requestSchedules = scheduleRepository.findByuserId(userId);
-
+        // User ScheduleDto to pass the formatted adders instead of the coordinates
         List<ScheduleDto> scheduleDtoList = new ArrayList<>();
 
         for(Schedule s : requestSchedules) {

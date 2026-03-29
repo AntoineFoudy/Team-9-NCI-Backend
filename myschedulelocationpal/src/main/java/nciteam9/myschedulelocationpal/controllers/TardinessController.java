@@ -20,9 +20,10 @@ public class TardinessController {
     }
 
     @GetMapping
-    public ResponseEntity getTardiness(@RequestParam Integer userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User Not Found"));;
+    public ResponseEntity<?> getTardiness(@RequestParam Integer userId) {
+
+        User user = userRepository.findByUserID(userId);
+
         ArrayList<String> userRecord = new ArrayList<>();
         String onTime = String.valueOf(user.getOnTime());
         String late = String.valueOf(user.getLate());
