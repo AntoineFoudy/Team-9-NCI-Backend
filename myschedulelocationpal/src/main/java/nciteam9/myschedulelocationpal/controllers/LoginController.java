@@ -1,12 +1,14 @@
 package nciteam9.myschedulelocationpal.controllers;
 
+import nciteam9.myschedulelocationpal.dtos.LoginDto;
+import nciteam9.myschedulelocationpal.dtos.RequestLoginDto;
 import nciteam9.myschedulelocationpal.entities.Login;
 import nciteam9.myschedulelocationpal.repositories.LoginRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 
 @RestController
@@ -19,19 +21,26 @@ public class LoginController {
         this.loginRepository = loginRepository;
     }
 
-    // Sets up the RESTFUL GET Method
-    @GetMapping("/login")
-    public ResponseEntity<Login> getLogin(
-            @RequestParam String loginEmail,
-            @RequestParam String loginPassword
-    ) {
-        // Reference var and execute findBy method
-        Login requestLogin = loginRepository.findByEmailAndPassword(loginEmail, loginPassword);
-        // If no user is found response will be 404
-        if(requestLogin == null) {
-            return ResponseEntity.notFound().build();
+    // Uses values passed by frontend to find a user's info and or pass the correct message
+    @PostMapping("/login")
+    public ResponseEntity<?> getLogin(@RequestBody RequestLoginDto request) {
+
+        // Use LoginDto to protect users info and only pass relevant info to the frontend
+        LoginDto loginDto = new LoginDto();
+
+        // Check if email or password is incorrect
+        Login requestLogin = loginRepository.findByEmail(request.getLoginEmail());
+        if(requestLogin != null && requestLogin.getPassword().equals(request.getLoginPassword())) {
+            loginDto.setUserID(requestLogin.getUserID());
+            loginDto.setFirstName(requestLogin.getUser().getFirstName());
+            loginDto.setLastName(requestLogin.getUser().getLastName());
         }
-        // If user is found sends back the name and email, includes other data that can be ignored
-        return ResponseEntity.ok(requestLogin);
+        // If email or password is incorrect return LoginDto with empty values
+        else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginDto);
+        }
+
+        // If user is found sends back the userID and name
+        return ResponseEntity.ok(loginDto);
     }
 }
