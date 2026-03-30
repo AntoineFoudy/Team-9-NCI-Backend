@@ -23,15 +23,17 @@ public class AtEventChecker {
     public void checkEventTime() {
         System.out.println("Running");
         List<Schedule> schedules = scheduleRepository.findAll();
+        // For all the schedules find if they are within a minute
         for(Schedule schedule : schedules) {
             Instant event = schedule.getDateTime();
+            // If true find which user it belongs to and their last know location
             if(eventInNextTimeFrame(event)) {
                 double eventLat = schedule.getLatitude();
                 double eventLng = schedule.getLongitude();
-                User user = userRepository.findById(schedule.getUserId())
-                        .orElseThrow(() -> new RuntimeException("User Not Found"));
+                User user = userRepository.findByUserID(schedule.getUserId());
                 double userLat = user.getLastLatitude();
                 double userLng = user.getLastLongitude();
+                // Check if the user's last know location is within 100m of the current event
                 if(distanceToEvent(eventLat, eventLng, userLat, userLng) <= 0.1) {
                     System.out.println("On time");
                     user.setOnTime(user.getOnTime() + 1);
@@ -40,8 +42,8 @@ public class AtEventChecker {
                     System.out.println("Late");
                     user.setOnTime(user.getLate() + 1);
                 }
-
-                User save = userRepository.save(user);
+                // Update if the user was within 100m or not in the database
+                userRepository.save(user);
             }
         }
     }
