@@ -4,7 +4,6 @@ import nciteam9.myschedulelocationpal.dtos.ScheduleDto;
 import nciteam9.myschedulelocationpal.entities.Schedule;
 import nciteam9.myschedulelocationpal.repositories.ScheduleRepository;
 import nciteam9.myschedulelocationpal.service.GeoCode;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -78,6 +77,6 @@ public class ScheduleControllers {
         schedule.setScheduleId(scheduleId);
         scheduleRepository.delete(schedule);
 
-        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        return ResponseEntity.ok().build();
     }
 }
