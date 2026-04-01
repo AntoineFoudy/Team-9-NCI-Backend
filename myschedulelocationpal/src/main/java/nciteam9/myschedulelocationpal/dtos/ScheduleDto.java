@@ -12,7 +12,7 @@ import java.time.Instant;
 @Getter
 @Setter
 public class ScheduleDto {
-    private int scheduleId;
+    private Integer scheduleId;
     private int userId;
     private Instant dateTime;
     private String address;
