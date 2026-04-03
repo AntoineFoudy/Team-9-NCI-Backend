@@ -40,7 +40,7 @@ public class AtEventChecker {
                 }
                 else {
                     System.out.println("Late");
-                    user.setOnTime(user.getLate() + 1);
+                    user.setLate(user.getLate() + 1);
                 }
                 // Update if the user was within 100m or not in the database
                 userRepository.save(user);
@@ -52,10 +52,11 @@ public class AtEventChecker {
         // Gets the time now and the value determined by betweenNowAndThenValue
         int betweenNowAndThenValue = 1;
         Instant now = Instant.now();
-        Instant nowPlusTime = now.plus(Duration.ofMinutes(betweenNowAndThenValue));
+        Instant windowStart = now.minus(Duration.ofMinutes(betweenNowAndThenValue));
+        Instant windowEnd = now.plus(Duration.ofMinutes(betweenNowAndThenValue));
 
         // Checks if the event is within 1 minutes
-        return dateTime.isAfter(now) && dateTime.isBefore(nowPlusTime);
+        return !dateTime.isBefore(windowStart) && !dateTime.isAfter(windowEnd);
     }
 
 

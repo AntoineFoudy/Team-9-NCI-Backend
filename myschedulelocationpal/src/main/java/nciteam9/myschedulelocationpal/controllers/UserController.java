@@ -32,7 +32,6 @@ public class UserController {
     public void setLastLocation(@RequestBody LastLocationDto lastLocationDto) {
         User user = userRepository.findByUserID(lastLocationDto.getUserId());
 
-        user.setUserID(lastLocationDto.getUserId());
         user.setLastLatitude(lastLocationDto.getLastLatitude());
         user.setLastLongitude(lastLocationDto.getLastLongitude());
 
