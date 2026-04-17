@@ -2,10 +2,7 @@ package nciteam9.myschedulelocationpal.entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import nciteam9.myschedulelocationpal.service.GeoCode;
 
 import java.time.Instant;
@@ -14,6 +11,7 @@ import java.time.Instant;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "Schedule")
 public class Schedule {
